@@ -1,0 +1,16 @@
+{
+  "name": "age-calculator-app-main",
+  "version": "1.0.0",
+  "description": "![Design preview for the Age calculator app coding challenge](preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./src/styles/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.14",
+    "tailwindcss": "^4.1.14"
+  }
+}

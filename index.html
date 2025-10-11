@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./src/styles/output.css" />
+    <title>Age Calculator</title>
+  </head>
+  <body class="flex items-center justify-center min-h-screen bg-grey-100">
+    <main
+      class="bg-white m-4 p-6 py-10 rounded-3xl rounded-br-[7rem] max-w-lg w-full md:p-8 md:rounded-2xl md:rounded-br-[8rem]"
+    >
+      <!-- Input Section -->
+      <form id="age" class="flex gap-5 mb-16 md:mb-7">
+        <div class="flex flex-col flex-1 md:flex-none">
+          <label
+            for="day"
+            class="text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
+            >Day</label
+          >
+          <input
+            type="number"
+            id="day"
+            placeholder="DD"
+            class="w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 md:w-25 md:py-2"
+            required
+          />
+        </div>
+
+        <div class="flex flex-col flex-1 md:flex-none">
+          <label
+            for="month"
+            class="text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
+            >Month</label
+          >
+          <input
+            type="number"
+            id="month"
+            placeholder="MM"
+            class="w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 md:w-25 md:py-2"
+            required
+          />
+        </div>
+
+        <div class="flex flex-col flex-1 md:flex-none">
+          <label
+            for="year"
+            class="text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
+            >Year</label
+          >
+          <input
+            type="number"
+            id="year"
+            placeholder="YYYY"
+            class="w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 md:w-25 md:py-2"
+            required
+          />
+        </div>
+      </form>
+
+      <!-- Submit Button -->
+      <section class="relative mb-16 md:mb-5">
+        <hr class="border-grey-200" />
+        <button
+          class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-purple-500 rounded-full size-18 flex items-center justify-center cursor-pointer md:size-15 md:left-auto md:right-0 md:translate-x-0 hover:bg-black"
+        >
+          <svg
+            class="size-[40%]"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 46 44"
+          >
+            <path
+              fill="none"
+              stroke="#FFF"
+              stroke-width="4"
+              d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"
+            />
+          </svg>
+        </button>
+      </section>
+
+      <!-- Output Section -->
+      <section class="text-[3rem]/14 font-extrabold italic md:text-[4rem]/18">
+        <p><span id="years" class="text-purple-500">--</span> years</p>
+        <p><span id="months" class="text-purple-500">--</span> months</p>
+        <p><span id="days" class="text-purple-500">--</span> days</p>
+      </section>
+    </main>
+  </body>
+</html>
