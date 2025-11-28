@@ -14,53 +14,65 @@
   </head>
   <body class="flex items-center justify-center min-h-screen bg-grey-100">
     <main
-      class="bg-white m-4 p-6 py-10 rounded-3xl rounded-br-[7rem] max-w-lg w-full md:p-8 md:rounded-2xl md:rounded-br-[8rem]"
+      class="bg-white m-4 p-6 py-10 rounded-3xl rounded-br-[7rem] max-w-xl w-full md:p-8 md:rounded-2xl md:rounded-br-[8rem]"
     >
       <!-- Input Section -->
-      <form id="age" class="flex gap-5 mb-16 md:mb-7">
-        <div class="flex flex-col flex-1 md:flex-none">
+      <form id="age" class="flex gap-5 mb-10">
+        <div class="flex flex-col flex-1 relative pb-5 md:flex-none">
           <label
             for="day"
-            class="text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
+            class="label text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
             >Day</label
           >
           <input
             type="number"
             id="day"
+            maxlength="2"
             placeholder="DD"
-            class="w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 md:w-25 md:py-2"
+            class="input w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:border-purple-500 md:w-30 md:py-3"
             required
           />
+          <small
+            class="error-msg absolute bottom-0 text-[10px] italic text-red-400"
+          ></small>
         </div>
 
-        <div class="flex flex-col flex-1 md:flex-none">
+        <div class="flex flex-col flex-1 relative pb-5 md:flex-none">
           <label
             for="month"
-            class="text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
+            class="label text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
             >Month</label
           >
           <input
             type="number"
             id="month"
+            maxlength="2"
             placeholder="MM"
-            class="w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 md:w-25 md:py-2"
+            class="input w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:border-purple-500 md:w-30 md:py-3"
             required
           />
+          <small
+            class="error-msg absolute bottom-0 left-0 text-[10px] italic text-red-400"
+          ></small>
         </div>
 
-        <div class="flex flex-col flex-1 md:flex-none">
+        <div class="flex flex-col flex-1 relative pb-5 md:flex-none">
           <label
             for="year"
-            class="text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
+            class="label text-xs uppercase tracking-[0.15rem] text-grey-500 mb-2 font-bold"
             >Year</label
           >
           <input
             type="number"
             id="year"
+            maxlength="4"
             placeholder="YYYY"
-            class="w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 md:w-25 md:py-2"
+            class="input w-full py-4 pl-3 border border-grey-200 rounded-md font-bold text-lg focus:outline-none focus:border-purple-500 md:w-30 md:py-3"
             required
           />
+          <small
+            class="error-msg absolute bottom-0 left-0 text-[10px] italic text-red-400"
+          ></small>
         </div>
       </form>
 
@@ -92,5 +104,7 @@
         <p><span id="days" class="text-purple-500">--</span> days</p>
       </section>
     </main>
+
+    <script src="./src/script/main.js"></script>
   </body>
 </html>
