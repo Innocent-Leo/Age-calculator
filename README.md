@@ -38,7 +38,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repo](https://github.com/Innocent-Leo/Age-calculator.git)
-- Live Site URL: [Live Demo](https://age-calculator-w-app.netlify.app/)
+- Live Site URL: [Live Demo](https://my-age-counter.netlify.app/)
 
 ## My process
 
