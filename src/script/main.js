@@ -6,62 +6,57 @@ const calcBtn = document.querySelector("button");
 calcBtn.addEventListener("click", () => {
   let hasError = false;
 
-  const d = +dayInput.value;
-  const m = +monthInput.value;
-  const y = +yearInput.value;
+  const inputFields = [
+    { input: dayInput, field: "day", min: 1, max: 31 },
+    { input: monthInput, field: "month", min: 1, max: 31 },
+    { input: yearInput, field: "year", min: 1, max: new Date().getFullYear() },
+  ];
+
+  const values = {};
 
   //Check for empty fields and valid numeric ranges
 
-  if (dayInput.value.trim() === "") {
-    errorMsg(dayInput, "This field is required");
-    hasError = true;
-  } else if (d < 1 || d > 31) {
-    errorMsg(dayInput, "Must be a valid day");
-    hasError = true;
-  }
-  if (monthInput.value.trim() === "") {
-    errorMsg(monthInput, "This field is required");
-    hasError = true;
-  } else if (m < 1 || m > 12) {
-    errorMsg(monthInput, "Must be a valid month");
-    hasError = true;
-  }
-  if (yearInput.value.trim() === "") {
-    errorMsg(yearInput, "This field is required");
-    hasError = true;
-  } else if (y < 1) {
-    errorMsg(yearInput, "Must be a valid year");
-    hasError = true;
-  } else if (y > new Date().getFullYear()) {
-    errorMsg(yearInput, "Must be in the past");
-    hasError = true;
-  }
+  inputFields.forEach(({ input, field, min, max }) => {
+    const value = input.value.trim();
+    const num = +value;
+
+    values[field] = num;
+
+    if (!value) {
+      errorMsg(input, "This field is required");
+      hasError = true;
+    } else if (num < min || num > max) {
+      if (field === "year" && num > max) {
+        errorMsg(input, "Must be in the past");
+      } else {
+        errorMsg(input, `Must be a valid ${field}`);
+      }
+      hasError = true;
+    }
+  });
+
+  if (hasError) return;
 
   //Check if date actually exists
 
-  const birthDate = new Date(y, m - 1, d);
+  const birthDate = new Date(values.year, values.month - 1, values.day);
   const today = new Date();
 
-  if (!hasError) {
-    if (
-      birthDate.getFullYear() !== y ||
-      birthDate.getMonth() !== m - 1 ||
-      birthDate.getDate() !== d
-    ) {
-      errorMsg(dayInput, "Must be a valid date");
-      errorMsg(monthInput);
-      errorMsg(yearInput);
+  if (
+    birthDate.getFullYear() !== values.year ||
+    birthDate.getMonth() !== values.month - 1 ||
+    birthDate.getDate() !== values.day
+  ) {
+    inputFields.forEach(({ input }) => {
+      errorMsg(input, "Must be a valid date");
       hasError = true;
-    }
+    });
+  }
 
-    //Check if birthdate is not in the future
-
-    if (birthDate > today) {
-      errorMsg(dayInput, "Cannot be a future birthdate");
-      errorMsg(monthInput);
-      errorMsg(yearInput);
-      hasError = true;
-    }
+  if (!hasError && birthDate > today) {
+    inputFields.forEach(({ input }) => {
+      errorMsg(input, "Cannot be a futur birthdate");
+    });
   }
 
   if (hasError) return;
@@ -95,22 +90,24 @@ dayInput.addEventListener("input", () => clearError(dayInput));
 monthInput.addEventListener("input", () => clearError(monthInput));
 yearInput.addEventListener("input", () => clearError(yearInput));
 
-const errorMsg = (e, message) => {
+function getInputFields(e) {
   const div = e.parentElement;
-  const small = div.querySelector(".error-msg");
-  const label = div.querySelector(".label");
-  const input = div.querySelector(".input");
+  return {
+    small: div.querySelector(".error-msg"),
+    label: div.querySelector(".label"),
+    input: div.querySelector(".input"),
+  };
+}
 
+const errorMsg = (e, message) => {
+  const { small, label, input } = getInputFields(e);
   small.textContent = message;
   label.classList.add("text-red-400");
   input.classList.add("border-red-400");
 };
 
 const clearError = (e) => {
-  const div = e.parentElement;
-  const small = div.querySelector(".error-msg");
-  const label = div.querySelector(".label");
-  const input = div.querySelector(".input");
+  const { small, label, input } = getInputFields(e);
 
   small.textContent = "";
   label.classList.remove("text-red-400");
